@@ -4,19 +4,25 @@ import { Reveal } from "@/components/shared/reveal";
 
 export function CtaBand() {
   return (
-    <section className="cta-band relative overflow-hidden bg-brand text-ivory">
-      <span className="absolute text-[140px] opacity-[0.08] -top-8 right-15 select-none" aria-hidden="true">
+    <section className="relative overflow-hidden bg-brand text-white">
+      <span
+        className="absolute text-[140px] opacity-[0.08] -top-8 right-15 select-none"
+        aria-hidden="true"
+      >
         ★
       </span>
-      <span className="absolute text-[90px] opacity-[0.08] -bottom-5 left-10 select-none" aria-hidden="true">
+      <span
+        className="absolute text-[90px] opacity-[0.08] -bottom-5 left-10 select-none"
+        aria-hidden="true"
+      >
         ★
       </span>
       <div className="max-w-[760px] mx-auto text-center px-6 py-24 relative z-1">
         <Reveal>
           <h2 className="text-[clamp(30px,4.5vw,52px)] font-black leading-[1.1] mb-4.5">
-            Punya ide? Kami siap{" "}
+            Have an idea? We're ready to{" "}
             <span className="red-underline">
-              eksekusi
+              execute
               <span className="red-underline-accent" />
             </span>
             .
@@ -24,13 +30,13 @@ export function CtaBand() {
         </Reveal>
         <Reveal>
           <p className="text-lg opacity-90 mb-8">
-            Ceritakan bisnismu — kami balas dalam 1×24 jam dengan arahan yang
-            jelas.
+            Tell us about your business — we reply within 24 hours with clear
+            direction.
           </p>
         </Reveal>
         <Reveal>
           <Button asChild variant="ivory" size="lg">
-            <Link href="/#kontak">Konsultasi Gratis Sekarang</Link>
+            <Link href="/#contact">Free Consultation Now</Link>
           </Button>
         </Reveal>
       </div>

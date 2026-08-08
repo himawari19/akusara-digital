@@ -2,24 +2,24 @@
 
 /* ============================================================
    Akusara Digital — Design System (Tailwind v4 @theme)
-   Palette: red / ivory / ink — flat, no gradients
+   Palette: red + white neutrals — flat, no gradients
    ============================================================ */
 @theme {
   /* Brand */
   --color-brand: #a31621;
   --color-brand-deep: #7a0f18;
   --color-brand-bright: #d92b3a;
-  /* Neutrals */
-  --color-ivory: #faf6f1;
-  --color-ivory-deep: #f2eae0;
-  --color-ink: #26160f;
-  --color-ink-soft: #6e5d55;
-  --color-line: #e5d9cb;
+  /* Neutrals — white-based (cream removed) */
+  --color-ivory: #ffffff;
+  --color-ivory-deep: #f7f5f2;
+  --color-ink: #1c1917;
+  --color-ink-soft: #6b6660;
+  --color-line: #e9e6e2;
   /* Radius */
   --radius: 18px;
   /* Shadow */
   --shadow-brand: 0 24px 60px -24px rgba(122, 15, 24, 0.25);
-  /* Font — system stack, kept faithful to original */
+  /* Font — system stack */
   --font-sans: "Segoe UI", system-ui, -apple-system, Roboto,
     "Helvetica Neue", sans-serif;
 }
@@ -48,35 +48,22 @@ body {
   color: var(--color-ivory);
 }
 
-/* Container utility (matches original .container) */
+/* Container utility */
 @utility container-ak {
   max-width: 1120px;
   margin-inline: auto;
   padding-inline: 24px;
 }
 
-/* Badge (from .badge — product tag pill) */
-@utility badge {
-  background: var(--color-ivory-deep);
-  color: var(--color-brand-deep);
-  border: 1px solid var(--color-line);
-  font-size: 12px;
-  font-weight: 800;
-  padding: 4px 12px;
-  border-radius: 999px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  display: inline-flex;
-  align-items: center;
-}
-
 /* ============================================================
-   Reveal animation (scroll-triggered, from .reveal)
+   Reveal animation — smooth, spring-like easing
    ============================================================ */
 @utility reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.3, 1);
+  transform: translateY(24px) scale(0.995);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 @utility reveal-visible {
   opacity: 1;
@@ -84,7 +71,7 @@ body {
 }
 
 /* ============================================================
-   Red underline accent (from .red-underline)
+   Red underline accent
    ============================================================ */
 @utility red-underline {
   position: relative;
@@ -105,7 +92,7 @@ body {
 }
 
 /* ============================================================
-   Red stamp badge (from .red-stamp)
+   Red stamp badge
    ============================================================ */
 @utility red-stamp {
   display: inline-block;
@@ -118,7 +105,24 @@ body {
 }
 
 /* ============================================================
-   Marquee (from .marquee — infinite scroll band)
+   Badge pill
+   ============================================================ */
+@utility badge {
+  background: var(--color-ivory-deep);
+  color: var(--color-brand-deep);
+  border: 1px solid var(--color-line);
+  font-size: 12px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ============================================================
+   Marquee — smooth infinite scroll
    ============================================================ */
 @utility marquee-band {
   overflow: hidden;
@@ -132,7 +136,7 @@ body {
 @utility marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee 22s linear infinite;
+  animation: marquee 28s linear infinite;
 }
 @keyframes marquee {
   to {
@@ -141,46 +145,77 @@ body {
 }
 
 /* ============================================================
-   Flip card 3D (from .flip-card)
+   Smooth animations
    ============================================================ */
-@utility flip-card {
-  perspective: 1200px;
+
+/* Gentle float for hero shapes */
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(3deg);
+  }
 }
-@utility flip-inner {
-  position: relative;
-  width: 100%;
-  height: 220px;
-  transition: transform 0.7s cubic-bezier(0.4, 0.1, 0.2, 1);
-  transform-style: preserve-3d;
+.float-slow {
+  animation: float-slow 7s ease-in-out infinite;
 }
-@utility flip-trigger {
-  /* applied on hover/focus-within via group */
-  transform: rotateY(180deg);
-}
-@utility flip-face {
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
-  border-radius: var(--radius);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  border: 1px solid var(--color-line);
-}
-@utility flip-back {
-  transform: rotateY(180deg);
+.float-slower {
+  animation: float-slow 10s ease-in-out infinite;
 }
 
-/* Flip trigger: hover or focus-within on the card flips the inner */
-.flip-card:hover .flip-inner,
-.flip-card:focus-within .flip-inner {
-  transform: rotateY(180deg);
+/* Slow zoom (kenburns) for hero image */
+@keyframes kenburns {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.08);
+  }
+}
+.kenburns {
+  animation: kenburns 18s ease-out forwards;
+}
+
+/* Pulsing ring behind hero image */
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(163, 22, 33, 0.25);
+  }
+  70% {
+    box-shadow: 0 0 0 24px rgba(163, 22, 33, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(163, 22, 33, 0);
+  }
+}
+.pulse-ring {
+  animation: pulse-ring 2.8s ease-out infinite;
+}
+
+/* Image hover zoom inside cards */
+.img-zoom {
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.group:hover .img-zoom {
+  transform: scale(1.05);
+}
+
+/* Smooth card lift (replaces abrupt translate) */
+.card-lift {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease;
+}
+.card-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px -30px rgba(122, 15, 24, 0.3);
 }
 
 /* ============================================================
-   Hero background shapes (from index.css .hero-* )
+   Hero background shapes
    ============================================================ */
 .hero-bg {
   position: absolute;
@@ -193,7 +228,7 @@ body {
   background-image: linear-gradient(var(--color-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
   background-size: 56px 56px;
-  opacity: 0.5;
+  opacity: 0.4;
   -webkit-mask-image: radial-gradient(
     ellipse 80% 70% at 50% 40%,
     #000 30%,
@@ -213,7 +248,7 @@ body {
   width: 480px;
   height: 480px;
   background: var(--color-brand);
-  opacity: 0.1;
+  opacity: 0.08;
   top: -140px;
   right: -120px;
 }
@@ -254,87 +289,6 @@ body {
   opacity: 0.18;
   top: 18%;
   left: 9%;
-}
-
-/* ============================================================
-   Browser mockup (product visual — from .pv-* )
-   ============================================================ */
-.pv-browser {
-  background: #fff;
-  border: 1px solid var(--color-line);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 10px 24px -12px rgba(38, 22, 15, 0.3);
-}
-.pv-dots {
-  display: inline-block;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--color-line);
-  margin: 9px 0 0 9px;
-}
-.pv-dots:first-child {
-  margin-left: 10px;
-}
-.pv-screen {
-  height: 150px;
-  padding: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  justify-content: center;
-}
-.pv-logo {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: var(--color-brand);
-  color: var(--color-ivory);
-  display: grid;
-  place-items: center;
-  font-weight: 900;
-  font-size: 18px;
-}
-.pv-bars {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-.pv-bars > i {
-  height: 9px;
-  border-radius: 5px;
-  background: var(--color-ivory-deep);
-  display: block;
-}
-.pv-bars > i:nth-child(2) {
-  background: var(--color-line);
-}
-.pv-row {
-  flex-direction: row;
-}
-.pv-row > i {
-  height: 52px;
-  border-radius: 8px;
-  background: var(--color-ivory-deep);
-  flex: 1;
-}
-.pv-row > i:nth-child(1) {
-  background: #f4e4dd;
-}
-.pv-row > i:nth-child(2) {
-  background: #efd8d0;
-}
-.pv-row > i:nth-child(3) {
-  background: var(--color-ivory-deep);
-}
-.pv-btn {
-  width: 90px;
-  height: 26px;
-  border-radius: 8px;
-  background: var(--color-brand);
-  opacity: 0.85;
-  align-self: flex-start;
 }
 
 /* ============================================================
@@ -416,6 +370,9 @@ body {
   margin: 2rem 0;
 }
 
+/* ============================================================
+   Reduced motion — disable non-essential animations
+   ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -425,7 +382,11 @@ body {
     transform: none !important;
     transition: none !important;
   }
-  .marquee-track {
+  .marquee-track,
+  .float-slow,
+  .float-slower,
+  .kenburns,
+  .pulse-ring {
     animation: none !important;
   }
   *,

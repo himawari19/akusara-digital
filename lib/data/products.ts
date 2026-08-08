@@ -1,9 +1,3 @@
-export interface ProductVisual {
-  logo: string;
-  bars: number[]; // widths %, 3 items
-  row: number[]; // widths %, 2-3 items
-}
-
 export interface Product {
   slug: string;
   name: string;
@@ -14,9 +8,12 @@ export interface Product {
   features: string[];
   featureDetails: { title: string; description: string }[];
   stack: string[];
-  visual: ProductVisual;
+  image: string;
   liveUrl?: string;
 }
+
+const img = (id: string) =>
+  `https://images.unsplash.com/${id}?w=1200&q=75&auto=format&fit=crop`;
 
 export const products: Product[] = [
   {
@@ -25,38 +22,38 @@ export const products: Product[] = [
     badge: "Booking Platform",
     tag: "E-Commerce",
     summary:
-      "Platform servis AC: booking online, upload foto kerusakan, hitung ongkir dari jarak Google Maps, bayar via Midtrans (QRIS & kartu), tracking order live, plus loyalty & referral. Lengkap dengan admin suite: order, teknisi, keuangan, inventori, sampai CRM & broadcast.",
+      "AC service platform: online booking, damage photo uploads, distance-based delivery fees via Google Maps, Midtrans payments (QRIS & cards), live order tracking, plus loyalty & referral programs. Includes a full admin suite: orders, technicians, finance, inventory, CRM & broadcast.",
     longDescription:
-      "AcKita adalah platform end-to-end untuk bisnis servis AC. Pelanggan bisa booking online, unggah foto kerusakan untuk mempercepat diagnosa, dan bayar langsung via Midtrans (QRIS & kartu). Ongkir dihitung otomatis dari jarak Google Maps. Di sisi admin, tersedia back-office lengkap: manajemen order, teknisi, keuangan, inventori, CRM, dan broadcast WhatsApp/push. Loyalty & referral program terintegrasi untuk retensi pelanggan.",
+      "AcKita is an end-to-end platform for AC service businesses. Customers book online, upload damage photos for faster diagnosis, and pay directly via Midtrans (QRIS & cards). Delivery fees are calculated automatically from Google Maps distance. On the admin side, a complete back-office is available: order management, technicians, finance, inventory, CRM, and WhatsApp/push broadcasts. Loyalty & referral programs are integrated to drive retention.",
     features: [
-      "Booking + pembayaran QRIS & kartu",
-      "Live order tracking & notifikasi WA/push",
-      "Admin back-office lengkap",
+      "Booking + QRIS & card payments",
+      "Live order tracking & WA/push notifications",
+      "Complete admin back-office",
     ],
     featureDetails: [
       {
-        title: "Booking & Pembayaran Terintegrasi",
+        title: "Integrated Booking & Payments",
         description:
-          "Pelanggan booking jadwal servis, unggah foto kerusakan, dan bayar via Midtrans (QRIS & kartu) — semua dalam satu alur.",
+          "Customers book a service slot, upload damage photos, and pay via Midtrans (QRIS & cards) — all in one flow.",
       },
       {
         title: "Live Order Tracking",
         description:
-          "Notifikasi WhatsApp & push notification untuk setiap perubahan status order, dari terjadwal sampai selesai.",
+          "WhatsApp & push notifications for every order status change, from scheduled to completed.",
       },
       {
         title: "Admin Back-Office Suite",
         description:
-          "Manajemen order, teknisi, keuangan, inventori, CRM, dan broadcast — semua dalam satu dashboard.",
+          "Manage orders, technicians, finance, inventory, CRM, and broadcasts — all from one dashboard.",
       },
       {
         title: "Loyalty & Referral",
         description:
-          "Program loyalitas otomatis dan sistem referral untuk mendorong pelanggan kembali dan merekomendasikan ke lain.",
+          "Automatic loyalty program and referral system to bring customers back and bring their friends.",
       },
     ],
     stack: ["Next.js", "React", "Tailwind", "SQLite", "Midtrans"],
-    visual: { logo: "AC", bars: [92, 76, 84], row: [38, 38, 38] },
+    image: img("photo-1581092918056-0c4c3acd3789"),
   },
   {
     slug: "arema-tailor",
@@ -64,67 +61,67 @@ export const products: Product[] = [
     badge: "Landing Page",
     tag: "Website",
     summary:
-      "Website penjahit & permak premium di Kebon Jeruk: paket harga jelas, galeri sebelum/sesudah, dan SmartWAForm yang langsung menyusun pesan WhatsApp dari nama, jenis jasa, dan tanggal kunjungan. Hasil: booking lewat WA tanpa ribet.",
+      "Premium tailor & alteration website in Kebon Jeruk: clear package pricing, before/after gallery, and a SmartWAForm that composes WhatsApp messages from name, service type, and visit date. Result: friction-free booking via WhatsApp.",
     longDescription:
-      "Arema Tailor adalah landing page untuk bisnis penjahit & permak premium di Kebon Jeruk. Website menampilkan paket harga transparan, galeri before/after, dan testimoni pelanggan. Fitur unggulannya: SmartWAForm yang otomatis menyusun pesan WhatsApp lengkap dari input nama, jenis jasa, dan tanggal kunjungan — pelanggan tinggal klik kirim, pemilik langsung terima pesan terstruktur tanpa perlu ketik manual. Dilengkapi SEO lokal dan structured data Google.",
+      "Arema Tailor is a landing page for a premium tailor & alteration business in Kebon Jeruk. The site shows transparent package pricing, a before/after gallery, and customer testimonials. Its standout feature: a SmartWAForm that automatically composes a complete WhatsApp message from the customer's name, service type, and visit date — the customer just taps send, and the owner receives a structured message without typing. Local SEO and Google structured data are included.",
     features: [
-      "Booking funnel langsung ke WhatsApp",
-      "Galeri & testimoni",
-      "SEO lokal + Google struktur data",
+      "Booking funnel straight to WhatsApp",
+      "Gallery & testimonials",
+      "Local SEO + Google structured data",
     ],
     featureDetails: [
       {
         title: "SmartWAForm",
         description:
-          "Form cerdas yang menyusun pesan WhatsApp terstruktur (nama, jasa, tanggal) — pelanggan klik, pemilik langsung terima.",
+          "A smart form that composes a structured WhatsApp message (name, service, date) — customer taps, owner receives.",
       },
       {
-        title: "Galeri Before/After",
+        title: "Before/After Gallery",
         description:
-          "Galeri pekerjaan dengan format sebelum/sesudah dan testimoni pelanggan untuk membangun trust.",
+          "Portfolio gallery and customer testimonials that build trust at a glance.",
       },
       {
-        title: "SEO Lokal",
+        title: "Local SEO",
         description:
-          "Optimasi Google Business Profile, structured data, dan keyword lokal agar muncul saat dicari di Kebon Jeruk.",
+          "Google Business Profile optimization, structured data, and local keywords to rank in Kebon Jeruk searches.",
       },
     ],
     stack: ["React", "Vite", "CSS"],
-    visual: { logo: "AT", bars: [88, 70, 80], row: [40, 40] },
+    image: img("photo-1556742049-0cfed4f6a45d"),
   },
   {
     slug: "dompet-kita",
     name: "Dompet Kita",
     badge: "Finance App",
-    tag: "Aplikasi",
+    tag: "App",
     summary:
-      "Aplikasi catatan keuangan pribadi/keluarga: workspace per anggota, catat pemasukan-pengeluaran, target tabungan, dan budget. Punya \"pengawas pintar\": transaksi yang 2,5× di atas rata-rata langsung ditandai, budget 80% juga diberi peringatan.",
+      "Personal & family finance tracker: per-member workspaces, income/expense tracking, savings goals, and budgets. A smart guardian flags transactions 2.5× above your average and warns when budgets hit 80%.",
     longDescription:
-      "Dompet Kita adalah aplikasi catatan keuangan untuk pribadi dan keluarga. Setiap anggota punya workspace sendiri untuk mencatat pemasukan, pengeluaran, target tabungan, dan budget. Fitur andalannya adalah \"pengawas pintar\": transaksi yang nilainya 2,5× di atas rata-rata otomatis ditandai sebagai anomali, dan budget yang sudah terpakai 80% diberi peringatan dini — supaya pengguna sadar sebelum kehabisan. Kalkulator target tabungan membantu merencanakan tujuan keuangan secara konkret.",
+      "Dompet Kita is a finance tracking app for individuals and families. Every member has their own workspace to log income, expenses, savings goals, and budgets. Its signature feature is a smart guardian: transactions worth 2.5× your average are automatically flagged as anomalies, and budgets at 80% usage trigger an early warning — so users notice before overspending. A savings goal calculator turns vague plans into concrete numbers.",
     features: [
-      "Multi-workspace keluarga",
-      "Alert pengeluaran & budget otomatis",
-      "Kalkulator target tabungan",
+      "Multi-workspace family finance",
+      "Automatic spending & budget alerts",
+      "Savings goal calculator",
     ],
     featureDetails: [
       {
-        title: "Multi-Workspace Keluarga",
+        title: "Family Workspaces",
         description:
-          "Tiap anggota keluarga punya workspace sendiri — pemasukan, pengeluaran, dan budget terpisah rapi.",
+          "Each family member gets their own workspace — income, expenses, and budgets stay neatly separated.",
       },
       {
-        title: "Pengawas Pintar",
+        title: "Smart Guardian",
         description:
-          "Transaksi 2,5× di atas rata-rata ditandai otomatis, dan budget di 80% diberi peringatan dini.",
+          "Transactions 2.5× above average are flagged automatically, and budgets at 80% trigger early warnings.",
       },
       {
-        title: "Kalkulator Target Tabungan",
+        title: "Savings Goal Calculator",
         description:
-          "Rencanakan tujuan tabungan dengan kalkulator yang menghitung berapa perlu disisihkan tiap bulan.",
+          "Plan savings goals with a calculator that shows exactly how much to set aside each month.",
       },
     ],
     stack: ["Next.js", "Prisma", "Postgres"],
-    visual: { logo: "DK", bars: [90, 80, 86], row: [36, 36, 36] },
+    image: img("photo-1563013544-824ae1b704d3"),
   },
   {
     slug: "qa-daily",
@@ -132,33 +129,33 @@ export const products: Product[] = [
     badge: "SaaS QA",
     tag: "SaaS",
     summary:
-      "Platform manajemen testing & bug tracking untuk tim engineering: pustaka test case, eksekusi session dengan verdict pass/fail, bug tracker lengkap, dashboard health score, burndown, dan laporan mingguan otomatis — plus export Excel & PDF.",
+      "Testing & bug tracking platform for engineering teams: test case library, execution sessions with pass/fail verdicts, full bug tracker, health score dashboard, burndown charts, and automated weekly reports — with Excel & PDF export.",
     longDescription:
-      "QA Daily adalah SaaS untuk tim engineering mengelola testing dan bug tracking. Fitur meliputi pustaka test case terorganisir, eksekusi test session dengan verdict pass/fail per langkah, bug tracker full lifecycle (open → in-progress → resolved → closed), dashboard health score dan burndown chart untuk visibilitas kualitas, serta laporan mingguan otomatis. Semua bisa di-export ke Excel dan PDF untuk pelaporan stakeholder.",
+      "QA Daily is a SaaS platform for engineering teams to manage testing and bug tracking. Features include an organized test case library, test session execution with pass/fail verdicts per step, a full-lifecycle bug tracker (open → in-progress → resolved → closed), health score and burndown dashboards for quality visibility, and automated weekly reports. Everything exports to Excel and PDF for stakeholder reporting.",
     features: [
-      "Test case & eksekusi session",
-      "Bug tracking full lifecycle",
-      "Dashboard & laporan otomatis",
+      "Test case library & execution sessions",
+      "Full-lifecycle bug tracking",
+      "Automated dashboards & reports",
     ],
     featureDetails: [
       {
-        title: "Pustaka Test Case",
+        title: "Test Case Library",
         description:
-          "Kelola test case terorganisir per modul, dengan tag dan prioritas. Eksekusi session dengan verdict pass/fail per langkah.",
+          "Organize test cases per module with tags and priority. Execute sessions with pass/fail verdicts per step.",
       },
       {
         title: "Bug Tracker Lifecycle",
         description:
-          "Bug tracking full lifecycle: open, in-progress, resolved, closed — dengan assignment, severity, dan komentar.",
+          "Full bug lifecycle: open, in-progress, resolved, closed — with assignment, severity, and comments.",
       },
       {
-        title: "Dashboard & Laporan",
+        title: "Dashboards & Reports",
         description:
-          "Health score, burndown chart, dan laporan mingguan otomatis dengan export Excel & PDF.",
+          "Health score, burndown charts, and automated weekly reports with Excel & PDF export.",
       },
     ],
     stack: ["Next.js", "Prisma", "Recharts", "Postgres"],
-    visual: { logo: "QD", bars: [94, 82, 78], row: [42, 42] },
+    image: img("photo-1551288049-bebda4e38f71"),
   },
   {
     slug: "mysitehub",
@@ -166,33 +163,33 @@ export const products: Product[] = [
     badge: "Dashboard",
     tag: "Tool",
     summary:
-      "Dashboard untuk mengelola semua website & web app dalam satu tempat: preview langsung dalam simulator perangkat (desktop/tablet/mobile), monitor uptime & masa berlaku SSL, plus admin CRUD dengan proteksi brute-force.",
+      "Manage all your websites & web apps from one dashboard: live previews in device simulators (desktop/tablet/mobile), uptime & SSL expiry monitoring, plus a brute-force-protected admin CRUD.",
     longDescription:
-      "MySiteHub adalah dashboard manajemen untuk mengelola semua website dan web app dari satu tempat. Pengguna bisa melakukan live preview dalam simulator perangkat (desktop, tablet, mobile) tanpa buka tab terpisah. Selain itu, ada monitor uptime dan masa berlaku SSL yang memberi peringatan sebelum kedaluwarsa. Sisi admin dilengkapi CRUD lengkap dengan proteksi brute-force (rate limiting) agar aman dari serangan tebakan kredensial.",
+      "MySiteHub is a management dashboard for all your websites and web apps in one place. Preview sites live inside device simulators (desktop, tablet, mobile) without opening new tabs. It also monitors uptime and SSL expiry with warnings before certificates lapse. The admin side includes complete CRUD with brute-force protection (rate limiting) against credential guessing attacks.",
     features: [
-      "Live preview multi-device",
-      "Monitor uptime & SSL",
-      "Admin aman + rate limiting",
+      "Live multi-device previews",
+      "Uptime & SSL monitoring",
+      "Secure admin + rate limiting",
     ],
     featureDetails: [
       {
-        title: "Live Preview Multi-Device",
+        title: "Multi-Device Live Preview",
         description:
-          "Pratinjau website dalam simulator desktop, tablet, dan mobile — tanpa buka tab baru.",
+          "Preview websites inside desktop, tablet, and mobile simulators — no new tabs needed.",
       },
       {
-        title: "Monitor Uptime & SSL",
+        title: "Uptime & SSL Monitoring",
         description:
-          "Pantau uptime dan masa berlaku SSL otomatis, dengan peringatan sebelum kedaluwarsa.",
+          "Automatic uptime and SSL expiry monitoring with early warnings before certificates expire.",
       },
       {
-        title: "Admin Aman",
+        title: "Secure Admin",
         description:
-          "Admin CRUD dengan proteksi brute-force (rate limiting) untuk mencegah serangan tebakan kredensial.",
+          "Admin CRUD with brute-force protection (rate limiting) against credential guessing.",
       },
     ],
     stack: ["Next.js", "Tailwind", "Vercel KV"],
-    visual: { logo: "MS", bars: [86, 74, 80], row: [44, 44] },
+    image: img("photo-1460925895917-afdab827c52f"),
   },
   {
     slug: "himagent",
@@ -200,33 +197,33 @@ export const products: Product[] = [
     badge: "AI Tool",
     tag: "AI",
     summary:
-      "Unggah screenshot aplikasi, dapatkan test plan Excel yang terstruktur. AI mendeteksi modul UI, menghasilkan test case positif/negatif/boundary, lalu langsung bisa diunduh sebagai .xlsx — hemat berjam-jam kerja manual.",
+      "Upload an app screenshot, get a structured Excel test plan. AI detects UI modules and generates positive, negative, and boundary test cases — downloadable as .xlsx in seconds, saving hours of manual work.",
     longDescription:
-      "Himagent adalah tool AI yang mengubah screenshot aplikasi menjadi test plan Excel terstruktur. Cukup unggah screenshot, AI mendeteksi modul-modul UI yang ada, lalu menghasilkan test case positif, negatif, dan boundary untuk tiap modul. Hasilnya bisa langsung diunduh sebagai file .xlsx. Mendukung berbagai model AI (Gemini, OpenAI, Claude, dll.) dan format export. Hemat berjam-jam kerja manual menyusun test case dari awal.",
+      "Himagent is an AI tool that turns app screenshots into structured Excel test plans. Just upload a screenshot; AI detects the UI modules present, then generates positive, negative, and boundary test cases for each module. Results download as a .xlsx file. It supports multiple AI models (Gemini, OpenAI, Claude, and more) and export formats — saving hours of manual test-writing.",
     features: [
-      "Screenshot → test plan Excel",
-      "Support Gemini, OpenAI, Claude, dll.",
-      "Export multi-format",
+      "Screenshot → Excel test plan",
+      "Gemini, OpenAI, Claude & more",
+      "Multi-format export",
     ],
     featureDetails: [
       {
         title: "Screenshot → Test Plan",
         description:
-          "AI mendeteksi modul UI dari screenshot dan menghasilkan test case positif, negatif, dan boundary secara otomatis.",
+          "AI detects UI modules from screenshots and generates positive, negative, and boundary test cases automatically.",
       },
       {
         title: "Multi-Model AI",
         description:
-          "Mendukung Gemini, OpenAI, Claude, dan model lainnya — pilih yang paling sesuai kebutuhan.",
+          "Supports Gemini, OpenAI, Claude, and other models — pick what fits your needs.",
       },
       {
-        title: "Export Multi-Format",
+        title: "Multi-Format Export",
         description:
-          "Unduh hasil sebagai .xlsx dan format lain, siap pakai langsung oleh tim QA.",
+          "Download results as .xlsx and other formats, ready for your QA team.",
       },
     ],
     stack: ["Python", "Flask", "AI API", "Excel"],
-    visual: { logo: "HG", bars: [90, 84, 72], row: [36, 36] },
+    image: img("photo-1620712943543-bcc4688e7485"),
   },
   {
     slug: "drama-studio-ai",
@@ -234,33 +231,33 @@ export const products: Product[] = [
     badge: "AI Studio",
     tag: "AI",
     summary:
-      "Studio lokal yang mengubah satu ide cerita jadi serial drama pendek viral: story bible, skrip episode 60–90 detik dengan hook 3 detik dan cliffhanger, sampai breakdown shot siap produksi untuk TikTok & YouTube Shorts.",
+      "A local studio that turns one story idea into a viral short-drama series: story bible, 60–90 second episode scripts with 3-second hooks and cliffhangers, down to shot breakdowns ready for TikTok & YouTube Shorts.",
     longDescription:
-      "Drama Studio AI adalah studio lokal yang mengubah satu ide cerita menjadi serial drama pendek viral. Dari ide, AI menghasilkan story bible, skrip episode berdurasi 60–90 detik dengan hook 3 detik di awal dan cliffhanger di akhir, sampai breakdown shot siap produksi untuk TikTok & YouTube Shorts. Dilengkapi template trope lokal Indonesia yang familiar dengan audiens lokal, serta export dan prompt siap produksi untuk tim kreatif.",
+      "Drama Studio AI is a local studio that turns one story idea into a viral short-drama series. From an idea, AI generates a story bible, episode scripts of 60–90 seconds with a 3-second hook and cliffhanger endings, and shot breakdowns ready for TikTok & YouTube Shorts production. It includes Indonesian-local trope templates that resonate with local audiences, plus exports and production-ready prompts for creative teams.",
     features: [
-      "Ide → skrip episode viral",
-      "Template trope lokal Indonesia",
-      "Export & prompt siap produksi",
+      "Idea → viral episode scripts",
+      "Indonesian-local trope templates",
+      "Production-ready exports",
     ],
     featureDetails: [
       {
-        title: "Ide → Skrip Viral",
+        title: "Idea → Viral Scripts",
         description:
-          "Dari satu ide cerita, AI menghasilkan story bible dan skrip episode 60–90 detik dengan hook 3 detik + cliffhanger.",
+          "From one story idea, AI generates a story bible and 60–90 second episodes with 3-second hooks + cliffhangers.",
       },
       {
-        title: "Template Trope Lokal",
+        title: "Local Trope Templates",
         description:
-          "Trope dan pola cerita yang familiar dengan audiens Indonesia untuk konten yang lebih relate.",
+          "Tropes and story patterns familiar to Indonesian audiences for more relatable content.",
       },
       {
-        title: "Breakdown Shot Siap Produksi",
+        title: "Shot Breakdowns",
         description:
-          "Export skrip dan breakdown shot siap pakai untuk produksi TikTok & YouTube Shorts.",
+          "Export scripts and shot breakdowns ready for TikTok & YouTube Shorts production.",
       },
     ],
     stack: ["FastAPI", "Next.js", "AI"],
-    visual: { logo: "DS", bars: [88, 76, 82], row: [38, 38, 38] },
+    image: img("photo-1677442136019-21780ecad995"),
   },
   {
     slug: "qa-automation-suite",
@@ -268,33 +265,33 @@ export const products: Product[] = [
     badge: "QA Suite",
     tag: "QA",
     summary:
-      "Sembilan proyek pengujian dengan hasil nyata: 37+ test case Playwright+Pytest, 23 kasus Cypress, 40+ API tests — semua dengan laporan HTML terpublikasi. Ini bukti bahwa kami menguji produk sebelum mengirimkannya.",
+      "Nine testing projects with real results: 37+ Playwright+Pytest test cases, 23 Cypress cases, 40+ API tests — all with published HTML reports. Proof that we test products before shipping them.",
     longDescription:
-      "QA Automation Suite adalah kumpulan sembilan proyek pengujian yang membuktikan kapabilitas testing Akusara Digital. Mencakup 37+ test case Playwright + Pytest untuk E2E, 23 kasus Cypress untuk web app, dan 40+ API tests untuk endpoint. Semua test dilengkapi laporan HTML terpublikasi yang bisa diakses publik sebagai bukti transparansi. Suite ini adalah manifestasi prinsip kami: setiap produk diuji dengan automation sebelum dikirim ke klien.",
+      "QA Automation Suite is a collection of nine testing projects that prove Akusara Digital's testing capabilities. It covers 37+ Playwright + Pytest test cases for E2E, 23 Cypress cases for web apps, and 40+ API tests for endpoints. All tests come with published HTML reports that anyone can view — transparent evidence of our work. This suite is our quality-first philosophy in action: every product is automation-tested before it ships.",
     features: [
-      "E2E Playwright & Cypress",
+      "E2E with Playwright & Cypress",
       "API & performance testing",
-      "Laporan auto-publish",
+      "Auto-published reports",
     ],
     featureDetails: [
       {
         title: "E2E Testing",
         description:
-          "37+ test case Playwright + Pytest dan 23 kasus Cypress untuk pengujian end-to-end aplikasi web.",
+          "37+ Playwright + Pytest cases and 23 Cypress cases for end-to-end web app testing.",
       },
       {
         title: "API & Performance Testing",
         description:
-          "40+ API tests untuk endpoint, plus performance testing dengan k6 untuk mengukur beban.",
+          "40+ API tests for endpoints, plus k6 performance tests to measure load capacity.",
       },
       {
-        title: "Laporan Auto-Publish",
+        title: "Auto-Published Reports",
         description:
-          "Laporan HTML terpublikasi otomatis setiap run — bukti transparansi hasil pengujian.",
+          "HTML reports auto-published on every run — transparent test evidence.",
       },
     ],
     stack: ["Playwright", "Cypress", "Jest", "k6"],
-    visual: { logo: "QS", bars: [84, 78, 70], row: [40, 40] },
+    image: img("photo-1611095790444-1dfa35e37b52"),
   },
 ];
 

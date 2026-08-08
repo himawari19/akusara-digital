@@ -18,7 +18,7 @@ export function generateMetadata({
   return (async () => {
     const { slug } = await params;
     const post = getPostBySlug(slug);
-    if (!post) return { title: "Artikel tidak ditemukan" };
+    if (!post) return { title: "Article not found" };
 
     return {
       title: post.title,
@@ -60,9 +60,13 @@ export default async function BlogPostPage({
       />
       <div className="container-ak max-w-[760px]">
         <nav className="text-sm text-ink-soft flex items-center gap-2 mb-8">
-          <Link href="/" className="hover:text-brand transition-colors">Beranda</Link>
+          <Link href="/" className="hover:text-brand transition-colors">
+            Home
+          </Link>
           <span>/</span>
-          <Link href="/blog" className="hover:text-brand transition-colors">Blog</Link>
+          <Link href="/blog" className="hover:text-brand transition-colors">
+            Blog
+          </Link>
           <span>/</span>
           <span className="text-ink font-semibold truncate max-w-[200px]">
             {post.title}
@@ -71,7 +75,7 @@ export default async function BlogPostPage({
 
         <div className="flex items-center gap-3 mb-4">
           <time className="text-sm font-semibold text-ink-soft">
-            {new Date(post.date).toLocaleDateString("id-ID", {
+            {new Date(post.date).toLocaleDateString("en-US", {
               day: "numeric",
               month: "long",
               year: "numeric",
@@ -79,7 +83,7 @@ export default async function BlogPostPage({
           </time>
           <span className="text-ink-soft text-sm">·</span>
           <span className="text-sm font-semibold text-ink-soft">
-            {post.readingTime} menit baca
+            {post.readingTime} min read
           </span>
         </div>
 
@@ -111,7 +115,7 @@ export default async function BlogPostPage({
 
         <div className="text-center">
           <Button asChild variant="outline" size="lg">
-            <Link href="/blog">← Semua artikel</Link>
+            <Link href="/blog">← All articles</Link>
           </Button>
         </div>
       </div>

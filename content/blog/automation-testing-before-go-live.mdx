@@ -1,0 +1,46 @@
+---
+title: "Automation Testing: Why We Test Before Go-Live"
+description: "Every product we ship passes automation testing first. Here's the story of why and how — from Playwright and Cypress to k6."
+date: "2026-08-05"
+tags: ["testing", "qa", "automation"]
+---
+
+Bugs after go-live are expensive — in both money and reputation. That's why at
+Akusara Digital, **no product ships without automation testing**.
+
+## Our testing stack
+
+### E2E: Playwright + Cypress
+
+To simulate real users (clicking, filling forms, checking out), we use:
+
+- **Playwright + Pytest** — 37+ cross-browser test cases
+- **Cypress** — 23 cases for critical flows
+
+### API Testing
+
+40+ test cases that hit endpoints directly. Response, status codes, and
+payload validation are verified before users ever touch the product.
+
+### Performance: k6
+
+What's the maximum number of users before the app slows down? k6 gives a
+concrete answer — not a guess.
+
+## Why not manual testing alone?
+
+Manual testing is **essential** for exploratory work. But for regression (old
+features breaking when new ones ship), manual is slow and easy to forget.
+Automation runs 60+ test cases in minutes, on every deploy.
+
+## The results?
+
+- Bugs after go-live drop significantly
+- More confident, more frequent deploys
+- QA teams focus on exploration, not repetition
+
+---
+
+We believe quality isn't a mantra — it's a **process**. And testing is part of
+that process. See our [QA Automation Suite](/products/qa-automation-suite)
+for real proof.

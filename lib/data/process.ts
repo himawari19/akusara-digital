@@ -7,27 +7,27 @@ export interface ProcessStep {
 export const processSteps: ProcessStep[] = [
   {
     num: "01",
-    title: "Diskusi & Konsultasi",
+    title: "Discuss & Consult",
     description:
-      "Kami dengar dulu masalah bisnismu. Gratis, tanpa komitmen — kami bantu tentukan yang paling pas.",
+      "We listen to your business problem first. Free, no commitment — we help you pick what fits best.",
   },
   {
     num: "02",
-    title: "Desain & Rencana",
+    title: "Design & Plan",
     description:
-      "Sketsa, alur, dan anggaran jelas di depan. Tidak ada biaya tersembunyi di tengah jalan.",
+      "Clear sketches, flows, and budget upfront. No hidden costs halfway through.",
   },
   {
     num: "03",
-    title: "Bangun & Uji",
+    title: "Build & Test",
     description:
-      "Kami koding, lalu kami uji sendiri — termasuk automation testing, supaya jarang bug di layananmu.",
+      "We code, then we test it ourselves — including automation testing, so bugs rarely reach your users.",
   },
   {
     num: "04",
-    title: "Rilis & Rawat",
+    title: "Launch & Maintain",
     description:
-      "Luncurkan, pantau, dan terus kami tingkatkan. Produk yang bagus itu yang hidup dan diperbarui.",
+      "Deploy, monitor, and keep improving. A great product is one that lives and gets updated.",
   },
 ];
 
@@ -38,19 +38,19 @@ export interface AboutPoint {
 
 export const aboutPoints: AboutPoint[] = [
   {
-    text: "berhasil kami rilis — dari landing page sampai platform pembayaran",
-    strong: "10+ produk",
+    text: "shipped — from landing pages to payment platforms",
+    strong: "10+ products",
   },
   {
-    text: "— website, aplikasi, dashboard, sampai tools AI generatif",
+    text: "— websites, apps, dashboards, even generative AI tools",
     strong: "Full-stack & AI",
   },
   {
-    text: "— setiap produk diuji dengan automation sebelum dikirim",
+    text: "— every product is automation-tested before delivery",
     strong: "Quality-first",
   },
   {
-    text: "— ngobrol langsung dengan yang mengerjakan",
-    strong: "Tanpa vendor perantara",
+    text: "— you talk directly to the people who do the work",
+    strong: "No middlemen",
   },
 ];

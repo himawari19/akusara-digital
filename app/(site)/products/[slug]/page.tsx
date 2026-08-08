@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { products, getProductBySlug } from "@/lib/data/products";
-import { ProductVisual } from "@/components/shared/product-visual";
+import { ProductImage } from "@/components/shared/product-image";
 import { Reveal } from "@/components/shared/reveal";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -19,7 +19,7 @@ export function generateMetadata({
   return (async () => {
     const { slug } = await params;
     const product = getProductBySlug(slug);
-    if (!product) return { title: "Produk tidak ditemukan" };
+    if (!product) return { title: "Product not found" };
 
     return {
       title: `${product.name} — ${product.badge}`,
@@ -28,8 +28,9 @@ export function generateMetadata({
         title: `${product.name} — Akusara Digital`,
         description: product.summary,
         type: "website",
+        images: [product.image],
       },
-      alternates: { canonical: `/produk/${slug}` },
+      alternates: { canonical: `/products/${slug}` },
     };
   })();
 }
@@ -51,7 +52,7 @@ export default async function ProductDetailPage({
     name: product.name,
     applicationCategory: product.tag,
     description: product.summary,
-    offers: { "@type": "Offer", price: "0", priceCurrency: "IDR" },
+    image: product.image,
   };
 
   return (
@@ -64,20 +65,27 @@ export default async function ProductDetailPage({
       {/* Breadcrumb */}
       <div className="container-ak">
         <nav className="text-sm text-ink-soft flex items-center gap-2 mb-8">
-          <Link href="/" className="hover:text-brand transition-colors">Beranda</Link>
+          <Link href="/" className="hover:text-brand transition-colors">
+            Home
+          </Link>
           <span>/</span>
-          <Link href="/#produk" className="hover:text-brand transition-colors">Produk</Link>
+          <Link href="/#products" className="hover:text-brand transition-colors">
+            Products
+          </Link>
           <span>/</span>
           <span className="text-ink font-semibold">{product.name}</span>
         </nav>
       </div>
 
-      {/* Hero produk */}
+      {/* Product hero */}
       <section className="bg-ivory-deep py-12">
         <div className="container-ak grid lg:grid-cols-2 gap-12 items-center">
           <Reveal>
-            <div className="bg-white border border-line rounded-[18px] p-8 shadow-[0_24px_60px_-24px_rgba(122,15,24,0.25)]">
-              <ProductVisual visual={product.visual} />
+            <div className="relative aspect-[16/11] rounded-[18px] overflow-hidden border border-line shadow-[0_24px_60px_-24px_rgba(122,15,24,0.25)]">
+              <ProductImage
+                src={product.image}
+                alt={`${product.name} — ${product.badge}`}
+              />
             </div>
           </Reveal>
           <div>
@@ -109,10 +117,10 @@ export default async function ProductDetailPage({
             <Reveal delay={320}>
               <div className="flex gap-3 flex-wrap">
                 <Button asChild variant="red" size="lg">
-                  <Link href="/#kontak">Konsultasi proyek serupa</Link>
+                  <Link href="/#contact">Build something similar</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg">
-                  <Link href="/#produk">Lihat semua produk</Link>
+                  <Link href="/#products">See all products</Link>
                 </Button>
               </div>
             </Reveal>
@@ -125,7 +133,7 @@ export default async function ProductDetailPage({
         <div className="container-ak">
           <Reveal>
             <h2 className="text-[clamp(26px,4vw,38px)] font-black mb-3">
-              Fitur utama{" "}
+              Key features of{" "}
               <span className="red-underline">
                 {product.name}
                 <span className="red-underline-accent" />
@@ -138,9 +146,9 @@ export default async function ProductDetailPage({
           <div className="grid md:grid-cols-2 gap-6">
             {product.featureDetails.map((f, i) => (
               <Reveal key={i} delay={i * 80} className="h-full">
-                <div className="bg-white border border-line rounded-[18px] p-7 h-full transition-all duration-200 hover:shadow-[0_24px_60px_-24px_rgba(122,15,24,0.25)] hover:border-brand">
+                <div className="bg-white border border-line rounded-[18px] p-7 h-full card-lift">
                   <div className="flex items-start gap-4">
-                    <span className="w-10 h-10 shrink-0 rounded-xl bg-brand text-ivory grid place-items-center font-black text-lg">
+                    <span className="w-10 h-10 shrink-0 rounded-xl bg-brand text-white grid place-items-center font-black text-lg">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <div>
@@ -157,29 +165,37 @@ export default async function ProductDetailPage({
         </div>
       </section>
 
-      {/* Produk lain */}
+      {/* Other products */}
       <section className="bg-ivory-deep py-16">
         <div className="container-ak">
           <Reveal>
             <h2 className="text-[clamp(26px,4vw,38px)] font-black mb-8">
-              Produk lainnya
+              Other products
             </h2>
           </Reveal>
           <div className="grid md:grid-cols-3 gap-5">
             {others.map((p, i) => (
               <Reveal key={p.slug} delay={i * 80} className="h-full">
                 <Link
-                  href={`/produk/${p.slug}`}
-                  className="block bg-white border border-line rounded-[18px] p-6 h-full transition-all duration-200 hover:-translate-y-1.5 hover:shadow-[0_24px_60px_-24px_rgba(122,15,24,0.25)] hover:border-brand"
+                  href={`/products/${p.slug}`}
+                  className="block bg-white border border-line rounded-[18px] overflow-hidden h-full card-lift"
                 >
-                  <span className="badge mb-3">{p.badge}</span>
-                  <h3 className="text-xl font-black mb-2">{p.name}</h3>
-                  <p className="text-ink-soft text-sm leading-relaxed line-clamp-3">
-                    {p.summary}
-                  </p>
-                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-brand">
-                    Lihat detail <span aria-hidden="true">→</span>
-                  </span>
+                  <div className="relative aspect-[16/9] bg-ivory-deep">
+                    <ProductImage
+                      src={p.image}
+                      alt={`${p.name} — ${p.badge}`}
+                    />
+                  </div>
+                  <div className="p-6">
+                    <span className="badge mb-3">{p.badge}</span>
+                    <h3 className="text-xl font-black mb-2">{p.name}</h3>
+                    <p className="text-ink-soft text-sm leading-relaxed line-clamp-3">
+                      {p.summary}
+                    </p>
+                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-brand">
+                      View case study <span aria-hidden="true">→</span>
+                    </span>
+                  </div>
                 </Link>
               </Reveal>
             ))}
@@ -192,22 +208,21 @@ export default async function ProductDetailPage({
         <div className="container-ak max-w-[600px]">
           <Reveal>
             <h2 className="text-[clamp(26px,4vw,42px)] font-black leading-[1.1] mb-4">
-              Mau bangun produk seperti{" "}
+              Want to build something like{" "}
               <span className="red-underline">
-                ini<span className="red-underline-accent" />
+                this<span className="red-underline-accent" />
               </span>
               ?
             </h2>
           </Reveal>
           <Reveal delay={80}>
             <p className="text-ink-soft text-lg mb-7">
-              Ceritakan ide bisnismu — kami bantu wujudkan dari nol sampai
-              go-live.
+              Tell us your idea — we'll help bring it from zero to go-live.
             </p>
           </Reveal>
           <Reveal delay={160}>
             <Button asChild variant="red" size="lg">
-              <Link href="/#kontak">Konsultasi Gratis Sekarang</Link>
+              <Link href="/#contact">Free Consultation Now</Link>
             </Button>
           </Reveal>
         </div>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Product } from "@/lib/data/products";
-import { ProductVisual } from "./product-visual";
+import { ProductImage } from "./product-image";
 import { cn } from "@/lib/utils";
 
 interface ProductCardProps {
@@ -12,19 +12,24 @@ export function ProductCard({ product, className }: ProductCardProps) {
   return (
     <article
       className={cn(
-        "group bg-white border border-line rounded-[18px] overflow-hidden flex flex-col",
-        "transition-all duration-200 hover:-translate-y-1.5 hover:rotate-[-0.3deg]",
-        "hover:shadow-[0_24px_60px_-24px_rgba(122,15,24,0.25)] hover:border-brand",
+        "group bg-white border border-line rounded-[18px] overflow-hidden flex flex-col card-lift",
         className
       )}
     >
-      <div className="bg-ivory-deep border-b border-line p-5">
-        <ProductVisual visual={product.visual} />
-      </div>
+      <Link href={`/products/${product.slug}`} className="block">
+        <div className="relative aspect-[16/10] bg-ivory-deep">
+          <ProductImage
+            src={product.image}
+            alt={`${product.name} — ${product.badge}`}
+          />
+        </div>
+      </Link>
       <div className="p-6 flex flex-col gap-3.5 flex-1">
         <div className="flex items-center gap-3">
           <span className="badge">{product.badge}</span>
-          <h3 className="text-2xl font-black">{product.name}</h3>
+          <h3 className="text-2xl font-black tracking-tight">
+            {product.name}
+          </h3>
         </div>
         <p className="text-ink-soft text-[15px] leading-relaxed">
           {product.summary}
@@ -33,7 +38,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
           {product.features.map((f, i) => (
             <li
               key={i}
-              className="text-sm font-semibold text-ink pl-6 relative before:absolute before:left-0 before:content-['✔'] before:text-brand before:font-black"
+              className="text-sm font-semibold text-ink pl-6 relative before:absolute before:left-0 before:content-['✓'] before:text-brand before:font-black"
             >
               {f}
             </li>
@@ -51,10 +56,10 @@ export function ProductCard({ product, className }: ProductCardProps) {
             ))}
           </div>
           <Link
-            href={`/produk/${product.slug}`}
-            className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-brand hover:text-brand-deep transition-colors"
+            href={`/products/${product.slug}`}
+            className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-brand hover:text-brand-deep transition-colors"
           >
-            Lihat detail
+            View case study
             <span aria-hidden="true">→</span>
           </Link>
         </div>

@@ -1,44 +1,37 @@
 export interface Service {
-  icon: string;
   title: string;
   description: string;
 }
 
 export const services: Service[] = [
   {
-    icon: "🖥️",
-    title: "Website & Landing Page",
+    title: "Websites & Landing Pages",
     description:
-      "Company profile, landing page jualan, atau situs toko yang cepat, aman, dan muncul di Google. Dirancang untuk konversi, bukan cuma hiasan.",
+      "Company profiles, sales landing pages, or storefronts that are fast, secure, and rank on Google. Built for conversion — not just decoration.",
   },
   {
-    icon: "📱",
-    title: "Aplikasi Web & Booking System",
+    title: "Web Apps & Booking Systems",
     description:
-      "Platform booking, aplikasi internal, dashboard admin, sampai sistem pembayaran (QRIS & kartu) — seperti AcKita yang kami bangun dari nol.",
+      "Booking platforms, internal tools, admin dashboards, and payment systems (QRIS & cards) — like AcKita, which we built from scratch.",
   },
   {
-    icon: "🤖",
-    title: "Tools AI & Otomasi",
+    title: "AI Tools & Automation",
     description:
-      "Generator konten, test case otomatis dari screenshot, sampai studio drama viral berbasis AI. Otomasi yang menghilangkan kerja manual berulang.",
+      "Content generators, test cases from screenshots, and AI-powered viral video studios. Automation that removes repetitive manual work.",
   },
   {
-    icon: "🛒",
-    title: "E-Commerce & Marketplace",
+    title: "E-Commerce & Marketplaces",
     description:
-      "Toko online lengkap: keranjang, checkout, pembayaran terintegrasi, dan manajemen produk/stok — siap pakai dengan data sungguhan.",
+      "Full online stores: cart, checkout, integrated payments, and product/inventory management — production-ready with real data.",
   },
   {
-    icon: "🧪",
     title: "QA & Automation Testing",
     description:
-      "Sebelum diluncurkan, kami uji dulu: automation E2E, API testing, performance test — jadi tidak ada kejutan jelek setelah go-live.",
+      "Before launch, we test: E2E automation, API testing, and performance tests — so there are no unpleasant surprises after go-live.",
   },
   {
-    icon: "🚀",
     title: "Maintenance & Growth",
     description:
-      "Setelah rilis kami rawat: update, monitoring, SEO, dan perbaikan terus-menerus supaya produkmu tetap laku dan lancar.",
+      "After release we maintain: updates, monitoring, SEO, and continuous improvement so your product keeps selling and stays healthy.",
   },
 ];

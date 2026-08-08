@@ -6,17 +6,17 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — Website, Aplikasi & Produk Digital yang Menjual`,
+    default: `${site.name} — Websites, Apps & Digital Products That Sell`,
     template: `%s — ${site.name}`,
   },
   description: site.description,
   keywords: [
     "digital agency Indonesia",
-    "jasa pembuatan website",
-    "aplikasi web Jakarta",
+    "website development Jakarta",
+    "web application development",
     "booking system",
     "e-commerce Indonesia",
-    "tools AI",
+    "AI tools",
     "QA automation",
   ],
   authors: [{ name: site.name }],
@@ -25,16 +25,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: site.locale,
     url: site.url,
-    title: `${site.name} — Website, Aplikasi & Produk Digital yang Menjual`,
+    title: `${site.name} — Websites, Apps & Digital Products That Sell`,
     description:
-      "Produk digital yang sudah kami buat dan jalankan: booking platform, e-commerce, dashboard, hingga tools AI.",
+      "Digital products we've built and run: booking platforms, e-commerce, dashboards, and AI tools.",
     siteName: site.name,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — Website, Aplikasi & Produk Digital yang Menjual`,
+    title: `${site.name} — Websites, Apps & Digital Products That Sell`,
     description:
-      "Produk digital yang sudah kami buat dan jalankan: booking platform, e-commerce, dashboard, hingga tools AI.",
+      "Digital products we've built and run: booking platforms, e-commerce, dashboards, and AI tools.",
   },
   robots: {
     index: true,
@@ -66,7 +66,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="id">
+    <html lang="en">
       <body className="font-sans antialiased">
         <script
           type="application/ld+json"

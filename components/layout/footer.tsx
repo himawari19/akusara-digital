@@ -3,16 +3,16 @@ import { Logo } from "./logo";
 import { site } from "@/lib/data/site";
 
 const footerLinks = [
-  { label: "Layanan", href: "/#layanan" },
-  { label: "Produk", href: "/#produk" },
-  { label: "Cara Kerja", href: "/#cara-kerja" },
+  { label: "Services", href: "/#services" },
+  { label: "Products", href: "/#products" },
+  { label: "Process", href: "/#process" },
   { label: "Blog", href: "/blog" },
-  { label: "Kontak", href: "/#kontak" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 const legalLinks = [
-  { label: "Kebijakan Privasi", href: "/privasi" },
-  { label: "Syarat & Ketentuan", href: "/syarat-ketentuan" },
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms & Conditions", href: "/terms" },
 ];
 
 export function Footer() {
@@ -22,7 +22,7 @@ export function Footer() {
     <footer className="bg-ink text-[#d9c9c0] py-11 pb-[30px]">
       <div className="container-ak">
         <div className="flex flex-wrap items-center justify-between gap-5">
-          <div className="footer-brand">
+          <div>
             <Logo light />
             <p className="text-[13px] mt-1.5 text-[#a89080] max-w-xs">
               {site.tagline}
@@ -31,7 +31,11 @@ export function Footer() {
 
           <nav className="flex flex-wrap gap-6 text-sm font-semibold">
             {footerLinks.map((l) => (
-              <Link key={l.href} href={l.href} className="hover:text-ivory transition-colors">
+              <Link
+                key={l.href}
+                href={l.href}
+                className="hover:text-white transition-colors"
+              >
                 {l.label}
               </Link>
             ))}
@@ -40,14 +44,18 @@ export function Footer() {
 
         <div className="flex flex-wrap gap-x-5 gap-y-2 text-[13px] text-[#a89080] mt-7 pt-5 border-t border-white/10">
           {legalLinks.map((l) => (
-            <Link key={l.href} href={l.href} className="hover:text-ivory transition-colors">
+            <Link
+              key={l.href}
+              href={l.href}
+              className="hover:text-white transition-colors"
+            >
               {l.label}
             </Link>
           ))}
         </div>
 
         <p className="text-[13px] text-[#a89080] w-full text-center mt-6 pt-[22px] border-t border-white/10">
-          &copy; {year} Akusara Digital. Dibuat dengan ♥ di Indonesia.
+          &copy; {year} Akusara Digital. Made with ♥ in Indonesia.
         </p>
       </div>
     </footer>

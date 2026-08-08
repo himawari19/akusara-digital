@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { useActionState } from "react";
-import { Loader2, Send } from "lucide-react";
+import { Loader2, Send, MessageCircle, Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -21,11 +21,11 @@ const initialState: ContactState = { status: "idle", message: "" };
 
 const needs = [
   "Website / Landing Page",
-  "Aplikasi Web / Booking System",
-  "Tools AI & Otomasi",
+  "Web App / Booking System",
+  "AI Tools & Automation",
   "E-Commerce",
   "QA & Automation Testing",
-  "Lainnya",
+  "Other",
 ];
 
 export function Contact() {
@@ -35,26 +35,24 @@ export function Contact() {
   );
 
   return (
-    <section id="kontak" className="py-[100px]">
+    <section id="contact" className="py-[100px]">
       <div className="container-ak">
         <div className="grid lg:grid-cols-2 gap-14 items-start">
-          <div className="contact-left">
+          <div>
             <Reveal>
               <p className="text-brand font-extrabold uppercase tracking-[0.14em] text-[13px] mb-3.5">
-                Hubungi Kami
+                Get in Touch
               </p>
             </Reveal>
             <Reveal>
               <h2 className="text-[clamp(30px,4vw,46px)] font-black leading-[1.12] tracking-[-0.01em] mb-4.5">
-                Mulai proyekmu
-                <br />
-                hari ini.
+                Start your project today.
               </h2>
             </Reveal>
             <Reveal>
               <p className="text-ink-soft text-[17px] mb-7">
-                Jawaban dalam 1×24 jam. Konsultasi pertama gratis — tidak ada
-                kewajiban.
+                We reply within 24 hours. Your first consultation is free — no
+                obligation.
               </p>
             </Reveal>
             <Reveal>
@@ -65,8 +63,8 @@ export function Contact() {
                   target="_blank"
                   rel="noopener"
                 >
-                  <span className="w-[46px] h-[46px] rounded-xl bg-ivory-deep grid place-items-center text-xl shrink-0">
-                    💬
+                  <span className="w-[46px] h-[46px] rounded-xl bg-ivory-deep grid place-items-center shrink-0">
+                    <MessageCircle className="h-5 w-5 text-brand" />
                   </span>
                   <div>
                     <strong className="block text-[15px]">WhatsApp</strong>
@@ -79,8 +77,8 @@ export function Contact() {
                   className="flex items-center gap-4 bg-white border border-line rounded-[14px] px-5 py-4 transition-all hover:translate-x-1 hover:border-brand hover:shadow-[0_24px_60px_-24px_rgba(122,15,24,0.25)]"
                   href={`mailto:${site.contact.email}`}
                 >
-                  <span className="w-[46px] h-[46px] rounded-xl bg-ivory-deep grid place-items-center text-xl shrink-0">
-                    ✉️
+                  <span className="w-[46px] h-[46px] rounded-xl bg-ivory-deep grid place-items-center shrink-0">
+                    <Mail className="h-5 w-5 text-brand" />
                   </span>
                   <div>
                     <strong className="block text-[15px]">Email</strong>
@@ -90,11 +88,11 @@ export function Contact() {
                   </div>
                 </a>
                 <div className="flex items-center gap-4 bg-white border border-line rounded-[14px] px-5 py-4">
-                  <span className="w-[46px] h-[46px] rounded-xl bg-ivory-deep grid place-items-center text-xl shrink-0">
-                    📍
+                  <span className="w-[46px] h-[46px] rounded-xl bg-ivory-deep grid place-items-center shrink-0">
+                    <MapPin className="h-5 w-5 text-brand" />
                   </span>
                   <div>
-                    <strong className="block text-[15px]">Lokasi</strong>
+                    <strong className="block text-[15px]">Location</strong>
                     <small className="text-ink-soft text-[13px]">
                       {site.contact.location}
                     </small>
@@ -112,24 +110,24 @@ export function Contact() {
             >
               <div className="flex flex-col sm:flex-row gap-4">
                 <label className="text-sm font-bold text-ink flex flex-col gap-2 flex-1">
-                  Nama
-                  <Input name="name" placeholder="Nama kamu" required />
+                  Name
+                  <Input name="name" placeholder="Your name" required />
                 </label>
                 <label className="text-sm font-bold text-ink flex flex-col gap-2 flex-1">
                   WhatsApp / Email
                   <Input
                     name="contact"
-                    placeholder="Nomor WA atau email"
+                    placeholder="WhatsApp number or email"
                     required
                   />
                 </label>
               </div>
 
               <label className="text-sm font-bold text-ink flex flex-col gap-2">
-                Kebutuhan
+                What do you need?
                 <Select name="need" required>
                   <SelectTrigger>
-                    <SelectValue placeholder="Pilih kebutuhanmu…" />
+                    <SelectValue placeholder="Select your need…" />
                   </SelectTrigger>
                   <SelectContent>
                     {needs.map((n) => (
@@ -142,11 +140,11 @@ export function Contact() {
               </label>
 
               <label className="text-sm font-bold text-ink flex flex-col gap-2">
-                Ceritakan proyekmu
+                Tell us about your project
                 <Textarea
                   name="message"
                   rows={4}
-                  placeholder="Ide, target, atau masalah yang mau diselesaikan…"
+                  placeholder="Your idea, goal, or problem to solve…"
                   required
                 />
               </label>
@@ -161,21 +159,16 @@ export function Contact() {
                 className="hidden"
               />
 
-              <Button
-                type="submit"
-                variant="red"
-                size="lg"
-                disabled={isPending}
-              >
+              <Button type="submit" variant="red" size="lg" disabled={isPending}>
                 {isPending ? (
                   <>
                     <Loader2 className="h-4 w-4 animate-spin" />
-                    Mengirim…
+                    Sending…
                   </>
                 ) : (
                   <>
                     <Send className="h-4 w-4" />
-                    Kirim — Gratis Konsultasi
+                    Send — Free Consultation
                   </>
                 )}
               </Button>

@@ -4,10 +4,10 @@ import { z } from "zod";
 import { site } from "@/lib/data/site";
 
 const ContactSchema = z.object({
-  name: z.string().min(2, "Nama minimal 2 karakter"),
-  contact: z.string().min(5, "Kontak tidak valid"),
-  need: z.string().min(1, "Pilih kebutuhanmu"),
-  message: z.string().min(10, "Ceritakan minimal 10 karakter"),
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  contact: z.string().min(5, "Invalid contact"),
+  need: z.string().min(1, "Please select your need"),
+  message: z.string().min(10, "Please tell us at least 10 characters"),
   // honeypot — must be empty
   company: z.string().max(0, "Spam detected").optional(),
 });
@@ -35,7 +35,7 @@ export async function submitContact(
     const errors = parsed.error.flatten().fieldErrors;
     return {
       status: "error",
-      message: "Lengkapi semua kolom dulu ya 🙂",
+      message: "Please fill in all fields 🙂",
       errors,
     };
   }
@@ -46,11 +46,11 @@ export async function submitContact(
 
   if (!resendKey) {
     // Fallback to WhatsApp deep link (no backend cost)
-    const text = `Halo Akusara Digital!\n\nNama: ${parsed.data.name}\nKontak: ${parsed.data.contact}\nKebutuhan: ${parsed.data.need}\nDetail: ${parsed.data.message}`;
+    const text = `Hello Akusara Digital!\n\nName: ${parsed.data.name}\nContact: ${parsed.data.contact}\nNeed: ${parsed.data.need}\nDetails: ${parsed.data.message}`;
     const waLink = `https://wa.me/${site.contact.whatsapp}?text=${encodeURIComponent(text)}`;
     return {
       status: "success",
-      message: `Backend email belum dikonfigurasi. Buka WhatsApp: ${waLink}`,
+      message: `Email backend not configured. Open WhatsApp: ${waLink}`,
     };
   }
 
@@ -61,26 +61,26 @@ export async function submitContact(
     await resend.emails.send({
       from: `Akusara Digital <onboarding@resend.dev>`,
       to: toEmail,
-      subject: `Konsultasi baru dari ${parsed.data.name}`,
+      subject: `New consultation request from ${parsed.data.name}`,
       replyTo: parsed.data.contact,
       html: `
-        <h2>Pesan konsultasi baru</h2>
-        <p><strong>Nama:</strong> ${parsed.data.name}</p>
-        <p><strong>Kontak:</strong> ${parsed.data.contact}</p>
-        <p><strong>Kebutuhan:</strong> ${parsed.data.need}</p>
-        <p><strong>Detail:</strong></p>
+        <h2>New consultation request</h2>
+        <p><strong>Name:</strong> ${parsed.data.name}</p>
+        <p><strong>Contact:</strong> ${parsed.data.contact}</p>
+        <p><strong>Need:</strong> ${parsed.data.need}</p>
+        <p><strong>Details:</strong></p>
         <p>${parsed.data.message.replace(/\n/g, "<br>")}</p>
       `,
     });
 
     return {
       status: "success",
-      message: "Pesan terkirim! Kami balas dalam 1×24 jam.",
+      message: "Message sent! We'll reply within 24 hours.",
     };
   } catch {
     return {
       status: "error",
-      message: "Maaf, gagal mengirim. Coba WhatsApp langsung ya.",
+      message: "Sorry, sending failed. Try WhatsApp directly.",
     };
   }
 }
