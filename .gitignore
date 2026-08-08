@@ -34,3 +34,6 @@ next-env.d.ts
 
 # legacy (kept for reference, not deployed)
 /_legacy
+
+.vercel
+.env*
