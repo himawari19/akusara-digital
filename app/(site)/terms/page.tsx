@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <div className="pt-28 pb-20">
+    <div className="pt-24 md:pt-28 pb-20">
       <div className="container-ak max-w-[760px]">
         <nav className="text-sm text-ink-soft flex items-center gap-2 mb-8">
           <Link href="/" className="hover:text-brand transition-colors">

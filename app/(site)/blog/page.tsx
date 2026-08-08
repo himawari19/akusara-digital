@@ -14,7 +14,7 @@ export default function BlogPage() {
   const posts = getAllPosts();
 
   return (
-    <div className="pt-28 pb-20">
+    <div className="pt-24 md:pt-28 pb-20">
       <div className="container-ak">
         <Reveal>
           <p className="text-brand font-extrabold uppercase tracking-[0.14em] text-[13px] mb-3.5">

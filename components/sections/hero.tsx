@@ -14,7 +14,7 @@ export function Hero() {
   return (
     <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-white">
       <ParallaxHeroBg />
-      <div className="relative z-2 container-ak w-full pt-[140px] pb-[90px] grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
+      <div className="relative z-2 container-ak w-full pt-[110px] pb-[70px] md:pt-[140px] md:pb-[90px] grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
         <div>
           <Reveal>
             <span className="inline-block bg-ivory-deep border border-line text-brand-deep font-bold text-sm px-4 py-2 rounded-full mb-6">
@@ -49,10 +49,10 @@ export function Hero() {
             </div>
           </Reveal>
           <Reveal delay={400}>
-            <div className="flex gap-11 mt-14 flex-wrap">
+            <div className="flex gap-x-8 gap-y-5 mt-12 md:gap-11 md:mt-14 flex-wrap">
               {site.stats.map((s) => (
                 <div key={s.label}>
-                  <strong className="text-4xl font-black text-brand block leading-[1.1]">
+                  <strong className="text-3xl md:text-4xl font-black text-brand block leading-[1.1]">
                     <Counter target={s.count} />
                   </strong>
                   <span className="text-ink-soft text-sm font-semibold">

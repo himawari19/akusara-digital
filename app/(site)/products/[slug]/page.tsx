@@ -56,7 +56,7 @@ export default async function ProductDetailPage({
   };
 
   return (
-    <article className="pt-28">
+    <article className="pt-24 md:pt-28">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

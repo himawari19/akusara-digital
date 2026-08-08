@@ -58,10 +58,10 @@ export function About() {
             </Reveal>
             <Reveal>
               <div className="bg-white border border-line rounded-[18px] p-7">
-                <div className="grid grid-cols-3 gap-4 text-center">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-4 text-center">
                   {site.aboutStats.map((s) => (
                     <div key={s.label}>
-                      <strong className="text-[32px] font-black text-brand block leading-none">
+                      <strong className="text-3xl sm:text-[32px] font-black text-brand block leading-none">
                         <Counter target={s.count} suffix="+" />
                       </strong>
                       <span className="text-[13px] text-ink-soft font-semibold block mt-1.5">

@@ -52,7 +52,12 @@ body {
 @utility container-ak {
   max-width: 1120px;
   margin-inline: auto;
-  padding-inline: 24px;
+  padding-inline: 20px;
+}
+@media (min-width: 640px) {
+  .container-ak {
+    padding-inline: 24px;
+  }
 }
 
 /* ============================================================
@@ -130,8 +135,15 @@ body {
   color: var(--color-ivory);
   padding-block: 14px;
   transform: rotate(-1.2deg) scale(1.02);
-  width: 104%;
-  margin-left: -2%;
+  width: 106%;
+  margin-left: -3%;
+}
+@media (max-width: 480px) {
+  .marquee-band {
+    width: 110%;
+    margin-left: -5%;
+    transform: rotate(-1deg) scale(1.05);
+  }
 }
 @utility marquee-track {
   display: flex;

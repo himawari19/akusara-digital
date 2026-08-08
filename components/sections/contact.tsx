@@ -105,7 +105,7 @@ export function Contact() {
           <Reveal>
             <form
               action={formAction}
-              className="bg-white border border-line rounded-[18px] p-8.5 flex flex-col gap-4.5 shadow-[0_24px_60px_-24px_rgba(122,15,24,0.25)]"
+              className="bg-white border border-line rounded-[18px] p-6 md:p-8.5 flex flex-col gap-4.5 shadow-[0_24px_60px_-24px_rgba(122,15,24,0.25)]"
               noValidate
             >
               <div className="flex flex-col sm:flex-row gap-4">
