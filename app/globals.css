@@ -1,0 +1,438 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Akusara Digital — Design System (Tailwind v4 @theme)
+   Palette: red / ivory / ink — flat, no gradients
+   ============================================================ */
+@theme {
+  /* Brand */
+  --color-brand: #a31621;
+  --color-brand-deep: #7a0f18;
+  --color-brand-bright: #d92b3a;
+  /* Neutrals */
+  --color-ivory: #faf6f1;
+  --color-ivory-deep: #f2eae0;
+  --color-ink: #26160f;
+  --color-ink-soft: #6e5d55;
+  --color-line: #e5d9cb;
+  /* Radius */
+  --radius: 18px;
+  /* Shadow */
+  --shadow-brand: 0 24px 60px -24px rgba(122, 15, 24, 0.25);
+  /* Font — system stack, kept faithful to original */
+  --font-sans: "Segoe UI", system-ui, -apple-system, Roboto,
+    "Helvetica Neue", sans-serif;
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+* {
+  border-color: var(--color-line);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-ivory);
+  color: var(--color-ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-brand);
+  color: var(--color-ivory);
+}
+
+/* Container utility (matches original .container) */
+@utility container-ak {
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+/* Badge (from .badge — product tag pill) */
+@utility badge {
+  background: var(--color-ivory-deep);
+  color: var(--color-brand-deep);
+  border: 1px solid var(--color-line);
+  font-size: 12px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ============================================================
+   Reveal animation (scroll-triggered, from .reveal)
+   ============================================================ */
+@utility reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+@utility reveal-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================================
+   Red underline accent (from .red-underline)
+   ============================================================ */
+@utility red-underline {
+  position: relative;
+  color: var(--color-brand);
+  white-space: nowrap;
+}
+@utility red-underline-accent {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 4px;
+  height: 12px;
+  background: var(--color-brand);
+  opacity: 0.16;
+  border-radius: 4px;
+  z-index: -1;
+}
+
+/* ============================================================
+   Red stamp badge (from .red-stamp)
+   ============================================================ */
+@utility red-stamp {
+  display: inline-block;
+  background: var(--color-brand);
+  color: var(--color-ivory);
+  padding: 2px 14px;
+  border-radius: 10px;
+  transform: rotate(-2deg);
+  font-size: 0.9em;
+}
+
+/* ============================================================
+   Marquee (from .marquee — infinite scroll band)
+   ============================================================ */
+@utility marquee-band {
+  overflow: hidden;
+  background: var(--color-brand);
+  color: var(--color-ivory);
+  padding-block: 14px;
+  transform: rotate(-1.2deg) scale(1.02);
+  width: 104%;
+  margin-left: -2%;
+}
+@utility marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 22s linear infinite;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ============================================================
+   Flip card 3D (from .flip-card)
+   ============================================================ */
+@utility flip-card {
+  perspective: 1200px;
+}
+@utility flip-inner {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  transition: transform 0.7s cubic-bezier(0.4, 0.1, 0.2, 1);
+  transform-style: preserve-3d;
+}
+@utility flip-trigger {
+  /* applied on hover/focus-within via group */
+  transform: rotateY(180deg);
+}
+@utility flip-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  border: 1px solid var(--color-line);
+}
+@utility flip-back {
+  transform: rotateY(180deg);
+}
+
+/* Flip trigger: hover or focus-within on the card flips the inner */
+.flip-card:hover .flip-inner,
+.flip-card:focus-within .flip-inner {
+  transform: rotateY(180deg);
+}
+
+/* ============================================================
+   Hero background shapes (from index.css .hero-* )
+   ============================================================ */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(var(--color-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  opacity: 0.5;
+  -webkit-mask-image: radial-gradient(
+    ellipse 80% 70% at 50% 40%,
+    #000 30%,
+    transparent 75%
+  );
+  mask-image: radial-gradient(
+    ellipse 80% 70% at 50% 40%,
+    #000 30%,
+    transparent 75%
+  );
+}
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+}
+.orb-red {
+  width: 480px;
+  height: 480px;
+  background: var(--color-brand);
+  opacity: 0.1;
+  top: -140px;
+  right: -120px;
+}
+.orb-ivory {
+  width: 380px;
+  height: 380px;
+  background: var(--color-ivory-deep);
+  top: 30%;
+  left: -160px;
+}
+.hero-square {
+  position: absolute;
+  border: 3px solid var(--color-brand);
+  border-radius: 16px;
+}
+.sq-1 {
+  width: 46px;
+  height: 46px;
+  bottom: 22%;
+  right: 18%;
+  transform: rotate(12deg);
+}
+.sq-2 {
+  width: 26px;
+  height: 26px;
+  background: var(--color-brand-bright);
+  border: 0;
+  border-radius: 8px;
+  bottom: 34%;
+  right: 26%;
+}
+.hero-ring {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border: 3px solid var(--color-brand);
+  border-radius: 50%;
+  opacity: 0.18;
+  top: 18%;
+  left: 9%;
+}
+
+/* ============================================================
+   Browser mockup (product visual — from .pv-* )
+   ============================================================ */
+.pv-browser {
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 24px -12px rgba(38, 22, 15, 0.3);
+}
+.pv-dots {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--color-line);
+  margin: 9px 0 0 9px;
+}
+.pv-dots:first-child {
+  margin-left: 10px;
+}
+.pv-screen {
+  height: 150px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}
+.pv-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--color-brand);
+  color: var(--color-ivory);
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  font-size: 18px;
+}
+.pv-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.pv-bars > i {
+  height: 9px;
+  border-radius: 5px;
+  background: var(--color-ivory-deep);
+  display: block;
+}
+.pv-bars > i:nth-child(2) {
+  background: var(--color-line);
+}
+.pv-row {
+  flex-direction: row;
+}
+.pv-row > i {
+  height: 52px;
+  border-radius: 8px;
+  background: var(--color-ivory-deep);
+  flex: 1;
+}
+.pv-row > i:nth-child(1) {
+  background: #f4e4dd;
+}
+.pv-row > i:nth-child(2) {
+  background: #efd8d0;
+}
+.pv-row > i:nth-child(3) {
+  background: var(--color-ivory-deep);
+}
+.pv-btn {
+  width: 90px;
+  height: 26px;
+  border-radius: 8px;
+  background: var(--color-brand);
+  opacity: 0.85;
+  align-self: flex-start;
+}
+
+/* ============================================================
+   Blog prose (MDX styling)
+   ============================================================ */
+.prose-blog h2 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+.prose-blog h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+.prose-blog p {
+  margin-bottom: 1.25rem;
+  line-height: 1.75;
+  color: var(--color-ink);
+}
+.prose-blog ul,
+.prose-blog ol {
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+.prose-blog ul {
+  list-style: disc;
+}
+.prose-blog ol {
+  list-style: decimal;
+}
+.prose-blog li {
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
+.prose-blog a {
+  color: var(--color-brand);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.prose-blog a:hover {
+  color: var(--color-brand-deep);
+}
+.prose-blog strong {
+  font-weight: 800;
+}
+.prose-blog code {
+  background: var(--color-ivory-deep);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+.prose-blog pre {
+  background: var(--color-ink);
+  color: var(--color-ivory);
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+.prose-blog pre code {
+  background: none;
+  padding: 0;
+}
+.prose-blog blockquote {
+  border-left: 3px solid var(--color-brand);
+  padding-left: 1rem;
+  font-style: italic;
+  color: var(--color-ink-soft);
+  margin-bottom: 1.5rem;
+}
+.prose-blog hr {
+  border: none;
+  border-top: 1px solid var(--color-line);
+  margin: 2rem 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .marquee-track {
+    animation: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
