@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     template: `%s — ${site.name}`,
   },
   description: site.description,
+  alternates: { canonical: site.url },
   keywords: [
     "digital agency Indonesia",
     "website development Jakarta",
@@ -60,6 +61,14 @@ const jsonLd = {
     addressCountry: "ID",
   },
   areaServed: "Indonesia",
+  sameAs: [],
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "sales",
+    email: site.contact.email,
+    areaServed: "ID",
+    availableLanguage: ["en", "id"],
+  },
 };
 
 export default function RootLayout({
