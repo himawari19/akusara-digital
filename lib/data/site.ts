@@ -3,7 +3,7 @@ export const site = {
   tagline: "Website, aplikasi, dan produk digital yang menjual.",
   description:
     "Akusara Digital adalah agency digital: membangun website, aplikasi, dan tools AI yang benar-benar dipakai dan menghasilkan. Lihat produk kami yang sudah jalan.",
-  url: "https://akusara.digital",
+  url: "https://akusaraproject.my.id",
   locale: "id-ID",
   contact: {
     whatsapp: "6281234567890",
